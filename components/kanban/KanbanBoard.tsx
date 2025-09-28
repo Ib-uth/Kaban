@@ -178,8 +178,6 @@ export const KanbanBoard = () => {
         disableOverlayClose
         disableScrolling={false}
         disableCloseOnEsc={false}
-        disableBeacon
-        disableOverlay={false}
         styles={{
           options: {
             primaryColor: theme === 'dark' ? '#3b82f6' : '#2563eb',
@@ -224,13 +222,13 @@ export const KanbanBoard = () => {
             animation: 'none',
           },
           beacon: {
-            display: 'none',
+            display: 'none !important',
           },
           beaconInner: {
-            display: 'none',
+            display: 'none !important',
           },
           beaconOuter: {
-            display: 'none',
+            display: 'none !important',
           },
         }}
       />
