@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TaskFlow
 
-## Getting Started
+A modern, feature-rich Kanban board application built with Next.js, React, and TypeScript. TaskFlow helps teams and individuals manage their workflow with advanced features like drag-and-drop, filtering, search, bulk actions, and comprehensive analytics.
 
-First, run the development server:
+## ✨ Features
 
+- **Drag & Drop Interface** - Intuitive task management with smooth drag-and-drop functionality
+- **Advanced Filtering** - Filter tasks by priority, date range, assignee, and tags
+- **Powerful Search** - Find tasks quickly with real-time search across titles, descriptions, and tags
+- **Bulk Actions** - Select multiple tasks and perform bulk operations like duplicate, delete, or change priority
+- **Statistics Dashboard** - Comprehensive analytics and task distribution insights
+- **Theme Support** - Multiple themes (Light, Dark, Colorful) for personalized experience
+- **Responsive Design** - Works seamlessly across desktop, tablet, and mobile devices
+- **Local Storage** - Auto-save functionality with local data persistence
+- **Export/Import** - Backup and restore your board data
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/taskflow.git
+cd taskflow
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install --legacy-peer-deps
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## 🛠️ Built With
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js 15** - React framework with App Router
+- **React 19** - Modern React with latest features
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible component primitives
+- **Lucide React** - Beautiful icons
+- **React Beautiful DnD** - Drag and drop functionality
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📱 Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Create Tasks** - Click the "+" button in any column to add new tasks
+2. **Drag & Drop** - Move tasks between columns or reorder within columns
+3. **Search** - Use the search bar to find specific tasks
+4. **Filter** - Apply filters to focus on specific priorities or date ranges
+5. **Bulk Actions** - Select multiple tasks and use Quick Actions for bulk operations
+6. **View Statistics** - Toggle the statistics panel to see productivity insights
+7. **Customize** - Change themes and adjust settings to your preference
 
-## Deploy on Vercel
+## 🎨 Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+TaskFlow supports extensive customization:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Themes**: Light, Dark, and Colorful themes
+- **Columns**: Add, remove, or rename columns
+- **Settings**: Configure auto-save, task counts, compact mode, and notifications
+- **Data Management**: Export and import board data
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Support
+
+For support, email support@taskflow.app or join our Discord community.
+
+---
+
+Built with ❤️ by [Ibraheem Uthman](https://linkedin.com/in/ibraheem-uthman)

@@ -7,8 +7,8 @@ const initialBoard: Board = {
   tasks: {
     'task-1': {
       id: 'task-1',
-      title: 'Welcome to your Enhanced Kanban Board!',
-      description: 'This is your first task with enhanced features. Try the search, filters, and settings!',
+      title: 'Welcome to TaskFlow!',
+      description: 'This is your first task with TaskFlow\'s enhanced features. Try the search, filters, and settings!',
       priority: 'medium',
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -91,7 +91,7 @@ export const useKanban = () => {
 
   // Load from localStorage on mount
   useEffect(() => {
-    const saved = localStorage.getItem('kanban-board-enhanced');
+    const saved = localStorage.getItem('taskflow-board');
     if (saved) {
       try {
         const parsedState = JSON.parse(saved);
@@ -113,7 +113,7 @@ export const useKanban = () => {
   // Save to localStorage whenever state changes
   useEffect(() => {
     if (state.settings.autoSave) {
-      localStorage.setItem('kanban-board-enhanced', JSON.stringify(state));
+      localStorage.setItem('taskflow-board', JSON.stringify(state));
     }
   }, [state]);
 
@@ -353,7 +353,7 @@ export const useKanban = () => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `selected-tasks-${new Date().toISOString().split('T')[0]}.json`;
+        a.download = `taskflow-selected-tasks-${new Date().toISOString().split('T')[0]}.json`;
         a.click();
         URL.revokeObjectURL(url);
         break;

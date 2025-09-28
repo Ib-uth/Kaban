@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Kanban Board",
-  description: "A sophisticated Kanban board with drag-and-drop functionality, themes, and onboarding",
+  title: "TaskFlow - Modern Kanban Board",
+  description: "TaskFlow is a modern, feature-rich Kanban board application with drag-and-drop functionality, advanced filtering, bulk actions, and comprehensive analytics.",
 };
 
 export default function RootLayout({

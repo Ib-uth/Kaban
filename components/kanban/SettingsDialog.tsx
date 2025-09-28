@@ -106,7 +106,7 @@ export const SettingsDialog = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `kanban-board-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `taskflow-board-${new Date().toISOString().split('T')[0]}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };
@@ -246,7 +246,7 @@ export const SettingsDialog = ({
                 variant="outline"
                 onClick={() => {
                   if (confirm('This will clear all your data. Are you sure?')) {
-                    localStorage.removeItem('kanban-board');
+                    localStorage.removeItem('taskflow-board');
                     window.location.reload();
                   }
                 }}

@@ -24,7 +24,7 @@ import Joyride, { CallBackProps, STATUS, Step } from 'react-joyride';
 const onboardingSteps: Step[] = [
   {
     target: '.kanban-header',
-    content: 'Welcome to your Enhanced Kanban Board! This powerful tool helps you manage tasks with advanced features.',
+    content: 'Welcome to TaskFlow! This powerful tool helps you manage tasks with advanced features.',
     placement: 'bottom',
   },
   {
@@ -189,7 +189,7 @@ export const KanbanBoard = () => {
       <header className="kanban-header border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold">Kanban Board</h1>
+            <h1 className="text-2xl font-bold">TaskFlow</h1>
             <div className="flex items-center gap-3">
               <Button
                 variant="outline"
@@ -304,7 +304,7 @@ export const KanbanBoard = () => {
       <footer className="border-t bg-background/80 backdrop-blur-sm mt-auto">
         <div className="container mx-auto px-4 py-4">
           <div className="text-center text-sm text-muted-foreground">
-            © <a 
+            © TaskFlow by <a 
               href="https://LinkedIn.com/in/ibraheem-uthman" 
               target="_blank" 
               rel="noopener noreferrer"
