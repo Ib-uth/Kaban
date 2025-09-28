@@ -10,3 +10,66 @@ You can learn more, including how to opt-out if you'd not like to participate in
 https://nextjs.org/telemetry
 
  ✓ Ready in 1521ms
+ ○ Compiling / ...
+ ✓ Compiled / in 6.5s
+ ⨯ ./app/globals.css:4366:8
+Parsing CSS source code failed
+[0m [90m 4364 |[39m   }
+ [90m 4365 |[39m }
+[31m[1m>[22m[39m[90m 4366 |[39m [33m@[39m[36mimport[39m url([32m'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'[39m)[33m;[39m
+ [90m      |[39m        [31m[1m^[22m[39m
+ [90m 4367 |[39m body {
+ [90m 4368 |[39m   font[33m-[39mfamily[33m:[39m [32m'Inter'[39m[33m,[39m sans[33m-[39mserif[33m;[39m
+ [90m 4369 |[39m   letter[33m-[39mspacing[33m:[39m [33m-[39m[35m0.01[39mem[33m;[39m[0m
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.4s
+ GET / 500 in 9257ms
+ ⨯ ./app/globals.css:4366:8
+Parsing CSS source code failed
+[0m [90m 4364 |[39m   }
+ [90m 4365 |[39m }
+[31m[1m>[22m[39m[90m 4366 |[39m [33m@[39m[36mimport[39m url([32m'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'[39m)[33m;[39m
+ [90m      |[39m        [31m[1m^[22m[39m
+ [90m 4367 |[39m body {
+ [90m 4368 |[39m   font[33m-[39mfamily[33m:[39m [32m'Inter'[39m[33m,[39m sans[33m-[39mserif[33m;[39m
+ [90m 4369 |[39m   letter[33m-[39mspacing[33m:[39m [33m-[39m[35m0.01[39mem[33m;[39m[0m
+
+@import rules must precede all rules aside from @charset and @layer statements
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.tsx [Server Component]
+
+
+ GET / 500 in 284ms
+ ⚠ Cross origin request detected from kanban-board-2.lindy.site to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+ ✓ Compiled /favicon.ico in 445ms
+ GET /favicon.ico 500 in 515ms
+ ✓ Compiled in 436ms
+ ✓ Compiled / in 17ms
+ GET / 200 in 1762ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 352ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 281ms
+ GET / 200 in 193ms
+ ✓ Compiled in 364ms
+ ✓ Compiled / in 58ms
+ GET / 200 in 511ms
+ GET / 200 in 566ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 269ms
+ GET /favicon.ico 200 in 291ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 255ms
+ GET / 200 in 219ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 284ms
+ GET /favicon.ico 200 in 275ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 252ms
