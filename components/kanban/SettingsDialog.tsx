@@ -35,6 +35,9 @@ interface SettingsDialogProps {
     compactMode: boolean;
     enableNotifications: boolean;
   }) => void;
+  onShowHelp: () => void;
+  onToggleStats: () => void;
+  showStats: boolean;
 }
 
 export const SettingsDialog = ({
@@ -45,6 +48,9 @@ export const SettingsDialog = ({
   onUpdateColumns,
   settings,
   onUpdateSettings,
+  onShowHelp,
+  onToggleStats,
+  showStats,
 }: SettingsDialogProps) => {
   const [localColumns, setLocalColumns] = useState(columns);
   const [localColumnOrder, setLocalColumnOrder] = useState(columnOrder);
@@ -229,6 +235,42 @@ export const SettingsDialog = ({
                     setLocalSettings(prev => ({ ...prev, enableNotifications: checked }))
                   }
                 />
+              </div>
+            </div>
+          </div>
+
+          <Separator />
+
+          {/* Help & Statistics */}
+          <div>
+            <h3 className="text-lg font-medium mb-3">Help & Statistics</h3>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label>Show Help Tour</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Start the interactive tour to learn about TaskFlow features
+                  </p>
+                </div>
+                <Button variant="outline" onClick={onShowHelp}>
+                  Start Tour
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label>Statistics Panel</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Show/hide the statistics dashboard
+                  </p>
+                </div>
+                <Button 
+                  variant="outline" 
+                  onClick={onToggleStats}
+                  className={showStats ? "bg-accent" : ""}
+                >
+                  {showStats ? "Hide Stats" : "Show Stats"}
+                </Button>
               </div>
             </div>
           </div>

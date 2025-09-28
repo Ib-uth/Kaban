@@ -179,6 +179,8 @@ export const KanbanBoard = () => {
         showSkipButton
         callback={handleJoyrideCallback}
         disableOverlayClose
+        disableScrolling={false}
+        disableCloseOnEsc={false}
         styles={{
           options: {
             primaryColor: theme === 'dark' ? '#3b82f6' : '#2563eb',
@@ -186,20 +188,28 @@ export const KanbanBoard = () => {
           spotlight: {
             borderRadius: 8,
           },
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          },
         }}
       />
 
       {/* Header */}
       <header className="kanban-header border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
+          {/* Top row - Logo, Search, Settings */}
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold">TaskFlow</h1>
+            <h1 className="text-xl md:text-2xl font-bold">TaskFlow</h1>
             
-            {/* Right side items */}
-            <div className="flex items-center gap-3">
+            {/* Center search bar */}
+            <div className="flex-1 max-w-md mx-4">
               <div className="search-bar">
                 <SearchBar onSearch={setSearchQuery} />
               </div>
+            </div>
+            
+            {/* Right side items */}
+            <div className="flex items-center gap-2">
               <div className="theme-selector">
                 <ThemeSelector currentTheme={theme} onThemeChange={setTheme} />
               </div>
@@ -210,14 +220,14 @@ export const KanbanBoard = () => {
                 className="gap-2 settings-button"
               >
                 <Settings className="h-4 w-4" />
-                Settings
+                <span className="hidden sm:inline">Settings</span>
               </Button>
             </div>
           </div>
 
-          {/* Filter and Quick Actions Bar */}
-          <div className="flex items-center gap-4 mb-4">
-            <div className="filter-bar">
+          {/* Bottom row - Filters and Quick Actions */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+            <div className="filter-bar flex-1">
               <FilterBar filters={filters} onFilterChange={setFilters} />
             </div>
             <div className="quick-actions">
@@ -227,26 +237,6 @@ export const KanbanBoard = () => {
                 onClearSelection={() => setSelectedTasks([])}
                 totalTasks={totalTasks}
               />
-            </div>
-            <div className="flex items-center gap-2 ml-auto">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowOnboarding(true)}
-                className="gap-2"
-              >
-                <HelpCircle className="h-4 w-4" />
-                Help
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowStats(!showStats)}
-                className="gap-2 statistics-toggle"
-              >
-                {showStats ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                Stats
-              </Button>
             </div>
           </div>
 
@@ -341,6 +331,9 @@ export const KanbanBoard = () => {
         onUpdateColumns={updateColumns}
         settings={settings}
         onUpdateSettings={setSettings}
+        onShowHelp={() => setShowOnboarding(true)}
+        onToggleStats={() => setShowStats(!showStats)}
+        showStats={showStats}
       />
     </div>
   );
