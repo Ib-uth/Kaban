@@ -73,3 +73,117 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  GET /favicon.ico?favicon.bf3c9292.ico 200 in 284ms
  GET /favicon.ico 200 in 275ms
  GET /favicon.ico?favicon.bf3c9292.ico 200 in 252ms
+ GET / 200 in 211ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 261ms
+ ✓ Compiled in 248ms
+ ✓ Compiled in 243ms
+ GET / 200 in 214ms
+ ✓ Compiled /_not-found/page in 457ms
+ GET /apple-touch-icon-precomposed.png 404 in 628ms
+ GET /apple-touch-icon.png 404 in 123ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 254ms
+ GET / 200 in 204ms
+ GET /apple-touch-icon-precomposed.png 404 in 132ms
+ GET /apple-touch-icon.png 404 in 117ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 266ms
+ ✓ Compiled in 233ms
+ ✓ Compiled in 234ms
+ ✓ Compiled in 249ms
+ ✓ Compiled in 422ms
+ ✓ Compiled in 445ms
+ ✓ Compiled in 428ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ TypeError: Cannot read properties of undefined (reading 'includes')
+    at <unknown> (components/kanban/Column.tsx:131:45)
+    at Array.map (<anonymous>)
+    at children (components/kanban/Column.tsx:124:22)
+  129 |                   onEdit={onEditTask}
+  130 |                   onDelete={onDeleteTask}
+> 131 |                   isSelected={selectedTasks.includes(task.id)}
+      |                                             ^
+  132 |                   onToggleSelection={onToggleTaskSelection}
+  133 |                   compactMode={compactMode}
+  134 |                 /> {
+  digest: '2011943258'
+}
+ GET / 500 in 844ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /favicon.ico 200 in 263ms
+ ⨯ TypeError: Cannot read properties of undefined (reading 'includes')
+    at <unknown> (components/kanban/Column.tsx:131:45)
+    at Array.map (<anonymous>)
+    at children (components/kanban/Column.tsx:124:22)
+  129 |                   onEdit={onEditTask}
+  130 |                   onDelete={onDeleteTask}
+> 131 |                   isSelected={selectedTasks.includes(task.id)}
+      |                                             ^
+  132 |                   onToggleSelection={onToggleTaskSelection}
+  133 |                   compactMode={compactMode}
+  134 |                 /> {
+  digest: '2011943258'
+}
+ GET / 500 in 242ms
+ GET /apple-touch-icon-precomposed.png 404 in 162ms
+ GET /apple-touch-icon.png 404 in 121ms
+ ✓ Compiled in 415ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ TypeError: Cannot read properties of undefined (reading 'includes')
+    at <unknown> (components/kanban/Column.tsx:131:45)
+    at Array.map (<anonymous>)
+    at children (components/kanban/Column.tsx:124:22)
+  129 |                   onEdit={onEditTask}
+  130 |                   onDelete={onDeleteTask}
+> 131 |                   isSelected={selectedTasks.includes(task.id)}
+      |                                             ^
+  132 |                   onToggleSelection={onToggleTaskSelection}
+  133 |                   compactMode={compactMode}
+  134 |                 /> {
+  digest: '3691826352'
+}
+ GET / 500 in 699ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ TypeError: Cannot read properties of undefined (reading 'includes')
+    at <unknown> (components/kanban/Column.tsx:131:45)
+    at Array.map (<anonymous>)
+    at children (components/kanban/Column.tsx:124:22)
+  129 |                   onEdit={onEditTask}
+  130 |                   onDelete={onDeleteTask}
+> 131 |                   isSelected={selectedTasks.includes(task.id)}
+      |                                             ^
+  132 |                   onToggleSelection={onToggleTaskSelection}
+  133 |                   compactMode={compactMode}
+  134 |                 /> {
+  digest: '3691826352'
+}
+ GET / 500 in 250ms
+ GET /favicon.ico 200 in 260ms
+ ✓ Compiled in 533ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 0ms
+ GET / 200 in 876ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 268ms
+ GET /favicon.ico 200 in 331ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 330ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 355ms
+ ✓ Compiled in 307ms
+ ✓ Compiled in 308ms
+ ✓ Compiled in 255ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled / in 42ms
+ GET / 200 in 862ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 266ms
+ GET /favicon.ico 200 in 315ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 304ms
+ GET / 200 in 106ms
+ GET / 200 in 107ms
+ ✓ Compiled in 342ms
+ ✓ Compiled in 304ms
+ GET / 200 in 867ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 266ms
+ GET /favicon.ico 200 in 335ms
+ GET /favicon.ico?favicon.bf3c9292.ico 200 in 324ms

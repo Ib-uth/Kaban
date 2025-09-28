@@ -7,14 +7,44 @@ import { useKanban } from '@/hooks/useKanban';
 import { Column } from './Column';
 import { TaskDialog } from './TaskDialog';
 import { ThemeSelector } from './ThemeSelector';
+import { SearchBar } from './SearchBar';
+import { FilterBar } from './FilterBar';
+import { QuickActions } from './QuickActions';
+import { Statistics } from './Statistics';
+import { SettingsDialog } from './SettingsDialog';
 import { Button } from '@/components/ui/button';
-import { HelpCircle } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
+import { 
+  HelpCircle, 
+  Settings, 
+  BarChart3, 
+  Eye, 
+  EyeOff,
+  RefreshCw,
+  Download,
+  Zap
+} from 'lucide-react';
 import Joyride, { CallBackProps, STATUS, Step } from 'react-joyride';
 
 const onboardingSteps: Step[] = [
   {
     target: '.kanban-header',
-    content: 'Welcome to your Kanban Board! This is where you can manage your tasks and projects efficiently.',
+    content: 'Welcome to your Enhanced Kanban Board! This powerful tool helps you manage tasks with advanced features.',
+    placement: 'bottom',
+  },
+  {
+    target: '.search-bar',
+    content: 'Use the search bar to quickly find tasks by title, description, or tags.',
+    placement: 'bottom',
+  },
+  {
+    target: '.filter-bar',
+    content: 'Filter tasks by priority, date range, or other criteria to focus on what matters.',
+    placement: 'bottom',
+  },
+  {
+    target: '.quick-actions',
+    content: 'Select multiple tasks and use Quick Actions for bulk operations like duplicate, delete, or change priority.',
     placement: 'bottom',
   },
   {
@@ -23,18 +53,23 @@ const onboardingSteps: Step[] = [
     placement: 'bottom',
   },
   {
+    target: '.settings-button',
+    content: 'Access board settings to manage columns, preferences, and export your data.',
+    placement: 'bottom',
+  },
+  {
+    target: '.statistics-toggle',
+    content: 'Toggle statistics to see comprehensive analytics about your tasks and productivity.',
+    placement: 'bottom',
+  },
+  {
     target: '.kanban-columns',
-    content: 'Your tasks are organized in columns. You can drag and drop tasks between columns to update their status.',
+    content: 'Your tasks are organized in columns. Drag and drop tasks between columns, and use checkboxes to select multiple tasks.',
     placement: 'top',
   },
   {
-    target: '.add-task-button',
-    content: 'Click the + button to add new tasks to any column.',
-    placement: 'left',
-  },
-  {
     target: '.task-card',
-    content: 'Each task card shows the title, description, priority, and date. Click the menu to edit or delete tasks.',
+    content: 'Each task card shows priority, tags, assignee, and due dates. Click the menu for more options.',
     placement: 'top',
   },
 ];
@@ -44,13 +79,25 @@ export const KanbanBoard = () => {
     board,
     theme,
     showOnboarding,
+    settings,
+    filters,
+    searchQuery,
+    selectedTasks,
+    filteredTasks,
     addTask,
     updateTask,
     deleteTask,
     moveTask,
     reorderTask,
+    bulkAction,
+    updateColumns,
     setTheme,
     setShowOnboarding,
+    setSettings,
+    setFilters,
+    setSearchQuery,
+    setSelectedTasks,
+    toggleTaskSelection,
   } = useKanban();
 
   const [taskDialog, setTaskDialog] = useState<{
@@ -58,6 +105,9 @@ export const KanbanBoard = () => {
     task?: Task | null;
     columnId?: string;
   }>({ open: false });
+
+  const [settingsDialog, setSettingsDialog] = useState(false);
+  const [showStats, setShowStats] = useState(settings.showStatistics);
 
   const handleDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
@@ -72,10 +122,8 @@ export const KanbanBoard = () => {
     }
 
     if (source.droppableId === destination.droppableId) {
-      // Reordering within the same column
       reorderTask(source.droppableId, source.index, destination.index);
     } else {
-      // Moving to a different column
       moveTask(
         draggableId,
         source.droppableId,
@@ -99,12 +147,26 @@ export const KanbanBoard = () => {
     }
   };
 
+  const handleBulkAction = async (action: string, taskIds: string[]) => {
+    await bulkAction(action, taskIds);
+  };
+
   const handleJoyrideCallback = (data: CallBackProps) => {
     const { status } = data;
     if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
       setShowOnboarding(false);
     }
   };
+
+  const getFilteredTasksForColumn = (columnId: string) => {
+    const column = board.columns[columnId];
+    return column.taskIds
+      .map(taskId => filteredTasks[taskId])
+      .filter(Boolean);
+  };
+
+  const totalFilteredTasks = Object.keys(filteredTasks).length;
+  const totalTasks = Object.keys(board.tasks).length;
 
   const themeClasses = {
     light: 'bg-gray-50',
@@ -131,7 +193,7 @@ export const KanbanBoard = () => {
       {/* Header */}
       <header className="kanban-header border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between mb-4">
             <h1 className="text-2xl font-bold">Kanban Board</h1>
             <div className="flex items-center gap-3">
               <Button
@@ -143,21 +205,86 @@ export const KanbanBoard = () => {
                 <HelpCircle className="h-4 w-4" />
                 Help
               </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowStats(!showStats)}
+                className="gap-2 statistics-toggle"
+              >
+                {showStats ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                Stats
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSettingsDialog(true)}
+                className="gap-2 settings-button"
+              >
+                <Settings className="h-4 w-4" />
+                Settings
+              </Button>
               <div className="theme-selector">
                 <ThemeSelector currentTheme={theme} onThemeChange={setTheme} />
               </div>
             </div>
           </div>
+
+          {/* Search and Filter Bar */}
+          <div className="flex items-center gap-4 mb-4">
+            <div className="search-bar flex-1">
+              <SearchBar onSearch={setSearchQuery} />
+            </div>
+            <div className="filter-bar">
+              <FilterBar filters={filters} onFilterChange={setFilters} />
+            </div>
+            <div className="quick-actions">
+              <QuickActions
+                selectedTasks={selectedTasks}
+                onBulkAction={handleBulkAction}
+                onClearSelection={() => setSelectedTasks([])}
+                totalTasks={totalTasks}
+              />
+            </div>
+          </div>
+
+          {/* Results Summary */}
+          {(searchQuery || filters.priority.length > 0 || filters.dateRange) && (
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>
+                Showing {totalFilteredTasks} of {totalTasks} tasks
+              </span>
+              {searchQuery && (
+                <span>• Search: "{searchQuery}"</span>
+              )}
+              {filters.priority.length > 0 && (
+                <span>• Priority: {filters.priority.join(', ')}</span>
+              )}
+              {filters.dateRange && (
+                <span>• Date: {filters.dateRange}</span>
+              )}
+            </div>
+          )}
         </div>
       </header>
+
+      {/* Statistics */}
+      {showStats && (
+        <div className="container mx-auto px-4 py-6">
+          <Statistics
+            tasks={board.tasks}
+            columns={board.columns}
+            columnOrder={board.columnOrder}
+          />
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-6">
         <DragDropContext onDragEnd={handleDragEnd}>
-          <div className="kanban-columns kanban-columns">
+          <div className="kanban-columns">
             {board.columnOrder.map((columnId) => {
               const column = board.columns[columnId];
-              const tasks = column.taskIds.map((taskId) => board.tasks[taskId]);
+              const tasks = getFilteredTasksForColumn(columnId);
 
               return (
                 <Column
@@ -167,6 +294,10 @@ export const KanbanBoard = () => {
                   onAddTask={handleAddTask}
                   onEditTask={handleEditTask}
                   onDeleteTask={deleteTask}
+                  selectedTasks={selectedTasks}
+                  onToggleTaskSelection={toggleTaskSelection}
+                  showTaskCount={settings.showTaskCount}
+                  compactMode={settings.compactMode}
                 />
               );
             })}
@@ -190,13 +321,23 @@ export const KanbanBoard = () => {
         </div>
       </footer>
 
-      {/* Task Dialog */}
+      {/* Dialogs */}
       <TaskDialog
         open={taskDialog.open}
         onOpenChange={(open) => setTaskDialog({ open })}
         task={taskDialog.task}
         onSave={handleSaveTask}
         onUpdate={updateTask}
+      />
+
+      <SettingsDialog
+        open={settingsDialog}
+        onOpenChange={setSettingsDialog}
+        columns={board.columns}
+        columnOrder={board.columnOrder}
+        onUpdateColumns={updateColumns}
+        settings={settings}
+        onUpdateSettings={setSettings}
       />
     </div>
   );
