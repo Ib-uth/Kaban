@@ -14,10 +14,7 @@ import { Statistics } from './Statistics';
 import { SettingsDialog } from './SettingsDialog';
 import { Button } from '@/components/ui/button';
 import { 
-  HelpCircle, 
-  Settings, 
-  Eye, 
-  EyeOff
+  Settings
 } from 'lucide-react';
 import Joyride, { CallBackProps, STATUS, Step } from 'react-joyride';
 
@@ -181,35 +178,91 @@ export const KanbanBoard = () => {
         disableOverlayClose
         disableScrolling={false}
         disableCloseOnEsc={false}
+        disableBeacon
+        disableOverlay={false}
         styles={{
           options: {
             primaryColor: theme === 'dark' ? '#3b82f6' : '#2563eb',
+            zIndex: 10000,
           },
           spotlight: {
             borderRadius: 8,
+            animation: 'none',
           },
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
+            animation: 'none',
+          },
+          tooltip: {
+            animation: 'none',
+          },
+          tooltipContainer: {
+            animation: 'none',
+          },
+          tooltipTitle: {
+            animation: 'none',
+          },
+          tooltipContent: {
+            animation: 'none',
+          },
+          tooltipFooter: {
+            animation: 'none',
+          },
+          tooltipFooterSpacer: {
+            animation: 'none',
+          },
+          buttonNext: {
+            animation: 'none',
+          },
+          buttonBack: {
+            animation: 'none',
+          },
+          buttonSkip: {
+            animation: 'none',
+          },
+          buttonClose: {
+            animation: 'none',
+          },
+          beacon: {
+            display: 'none',
+          },
+          beaconInner: {
+            display: 'none',
+          },
+          beaconOuter: {
+            display: 'none',
           },
         }}
       />
 
       {/* Header */}
-      <header className="kanban-header border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4">
-          {/* Top row - Logo, Search, Settings */}
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl md:text-2xl font-bold">TaskFlow</h1>
+      <header className={`kanban-header border-b bg-background/80 backdrop-blur-sm sticky top-0 z-10 transition-colors duration-300 ${themeClasses[theme]}`}>
+        <div className="container mx-auto px-4 py-3">
+          {/* Single horizontal row */}
+          <div className="flex items-center justify-between gap-4">
+            {/* Left side - Logo */}
+            <h1 className="text-lg md:text-xl font-bold whitespace-nowrap">TaskFlow</h1>
             
-            {/* Center search bar */}
+            {/* Center - Search Bar */}
             <div className="flex-1 max-w-md mx-4">
               <div className="search-bar">
                 <SearchBar onSearch={setSearchQuery} />
               </div>
             </div>
             
-            {/* Right side items */}
-            <div className="flex items-center gap-2">
+            {/* Right side - All controls */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="filter-bar">
+                <FilterBar filters={filters} onFilterChange={setFilters} />
+              </div>
+              <div className="quick-actions">
+                <QuickActions
+                  selectedTasks={selectedTasks}
+                  onBulkAction={handleBulkAction}
+                  onClearSelection={() => setSelectedTasks([])}
+                  totalTasks={totalTasks}
+                />
+              </div>
               <div className="theme-selector">
                 <ThemeSelector currentTheme={theme} onThemeChange={setTheme} />
               </div>
@@ -217,26 +270,11 @@ export const KanbanBoard = () => {
                 variant="outline"
                 size="sm"
                 onClick={() => setSettingsDialog(true)}
-                className="gap-2 settings-button"
+                className="gap-2 settings-button whitespace-nowrap"
               >
                 <Settings className="h-4 w-4" />
                 <span className="hidden sm:inline">Settings</span>
               </Button>
-            </div>
-          </div>
-
-          {/* Bottom row - Filters and Quick Actions */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
-            <div className="filter-bar flex-1">
-              <FilterBar filters={filters} onFilterChange={setFilters} />
-            </div>
-            <div className="quick-actions">
-              <QuickActions
-                selectedTasks={selectedTasks}
-                onBulkAction={handleBulkAction}
-                onClearSelection={() => setSelectedTasks([])}
-                totalTasks={totalTasks}
-              />
             </div>
           </div>
 
@@ -262,7 +300,7 @@ export const KanbanBoard = () => {
 
       {/* Statistics */}
       {showStats && (
-        <div className="container mx-auto px-4 py-6">
+        <div className={`container mx-auto px-4 py-6 transition-colors duration-300 ${themeClasses[theme]}`}>
           <Statistics
             tasks={board.tasks}
             columns={board.columns}
@@ -272,7 +310,7 @@ export const KanbanBoard = () => {
       )}
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-6">
+      <main className={`container mx-auto px-4 py-6 transition-colors duration-300 ${themeClasses[theme]}`}>
         <DragDropContext onDragEnd={handleDragEnd}>
           <div className="kanban-columns">
             {board.columnOrder.map((columnId) => {
@@ -299,7 +337,7 @@ export const KanbanBoard = () => {
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-background/80 backdrop-blur-sm mt-auto">
+      <footer className={`border-t bg-background/80 backdrop-blur-sm mt-auto transition-colors duration-300 ${themeClasses[theme]}`}>
         <div className="container mx-auto px-4 py-4">
           <div className="text-center text-sm text-muted-foreground">
             © TaskFlow by <a 
