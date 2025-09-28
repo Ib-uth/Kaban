@@ -178,9 +178,13 @@ export const KanbanBoard = () => {
         showProgress
         showSkipButton
         callback={handleJoyrideCallback}
+        disableOverlayClose
         styles={{
           options: {
             primaryColor: theme === 'dark' ? '#3b82f6' : '#2563eb',
+          },
+          spotlight: {
+            borderRadius: 8,
           },
         }}
       />
@@ -190,7 +194,41 @@ export const KanbanBoard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-2xl font-bold">TaskFlow</h1>
+            
+            {/* Right side items */}
             <div className="flex items-center gap-3">
+              <div className="search-bar">
+                <SearchBar onSearch={setSearchQuery} />
+              </div>
+              <div className="theme-selector">
+                <ThemeSelector currentTheme={theme} onThemeChange={setTheme} />
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setSettingsDialog(true)}
+                className="gap-2 settings-button"
+              >
+                <Settings className="h-4 w-4" />
+                Settings
+              </Button>
+            </div>
+          </div>
+
+          {/* Filter and Quick Actions Bar */}
+          <div className="flex items-center gap-4 mb-4">
+            <div className="filter-bar">
+              <FilterBar filters={filters} onFilterChange={setFilters} />
+            </div>
+            <div className="quick-actions">
+              <QuickActions
+                selectedTasks={selectedTasks}
+                onBulkAction={handleBulkAction}
+                onClearSelection={() => setSelectedTasks([])}
+                totalTasks={totalTasks}
+              />
+            </div>
+            <div className="flex items-center gap-2 ml-auto">
               <Button
                 variant="outline"
                 size="sm"
@@ -209,36 +247,6 @@ export const KanbanBoard = () => {
                 {showStats ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 Stats
               </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setSettingsDialog(true)}
-                className="gap-2 settings-button"
-              >
-                <Settings className="h-4 w-4" />
-                Settings
-              </Button>
-              <div className="theme-selector">
-                <ThemeSelector currentTheme={theme} onThemeChange={setTheme} />
-              </div>
-            </div>
-          </div>
-
-          {/* Search and Filter Bar */}
-          <div className="flex items-center gap-4 mb-4">
-            <div className="search-bar flex-1">
-              <SearchBar onSearch={setSearchQuery} />
-            </div>
-            <div className="filter-bar">
-              <FilterBar filters={filters} onFilterChange={setFilters} />
-            </div>
-            <div className="quick-actions">
-              <QuickActions
-                selectedTasks={selectedTasks}
-                onBulkAction={handleBulkAction}
-                onClearSelection={() => setSelectedTasks([])}
-                totalTasks={totalTasks}
-              />
             </div>
           </div>
 
