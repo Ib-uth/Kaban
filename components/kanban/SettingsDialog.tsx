@@ -14,7 +14,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { Trash2, Plus, X } from 'lucide-react';
+import { Trash2, Plus } from 'lucide-react';
 import { Column } from '@/types/kanban';
 
 interface SettingsDialogProps {
@@ -29,7 +29,12 @@ interface SettingsDialogProps {
     compactMode: boolean;
     enableNotifications: boolean;
   };
-  onUpdateSettings: (settings: any) => void;
+  onUpdateSettings: (settings: {
+    autoSave: boolean;
+    showTaskCount: boolean;
+    compactMode: boolean;
+    enableNotifications: boolean;
+  }) => void;
 }
 
 export const SettingsDialog = ({

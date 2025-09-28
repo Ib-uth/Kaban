@@ -13,16 +13,11 @@ import { QuickActions } from './QuickActions';
 import { Statistics } from './Statistics';
 import { SettingsDialog } from './SettingsDialog';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { 
   HelpCircle, 
   Settings, 
-  BarChart3, 
   Eye, 
-  EyeOff,
-  RefreshCw,
-  Download,
-  Zap
+  EyeOff
 } from 'lucide-react';
 import Joyride, { CallBackProps, STATUS, Step } from 'react-joyride';
 
@@ -153,7 +148,7 @@ export const KanbanBoard = () => {
 
   const handleJoyrideCallback = (data: CallBackProps) => {
     const { status } = data;
-    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+    if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
       setShowOnboarding(false);
     }
   };
@@ -254,7 +249,7 @@ export const KanbanBoard = () => {
                 Showing {totalFilteredTasks} of {totalTasks} tasks
               </span>
               {searchQuery && (
-                <span>• Search: "{searchQuery}"</span>
+                <span>• Search: &quot;{searchQuery}&quot;</span>
               )}
               {filters.priority.length > 0 && (
                 <span>• Priority: {filters.priority.join(', ')}</span>

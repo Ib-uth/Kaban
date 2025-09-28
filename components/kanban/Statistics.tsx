@@ -6,12 +6,8 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { 
   BarChart3, 
-  Clock, 
   CheckCircle, 
   AlertTriangle, 
-  TrendingUp,
-  Calendar,
-  Target,
   Activity
 } from 'lucide-react';
 
@@ -49,8 +45,6 @@ export const Statistics = ({ tasks, columns, columnOrder }: StatisticsProps) => 
   sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   const recentTasks = taskArray.filter(task => task.createdAt > sevenDaysAgo).length;
 
-  // Average tasks per column
-  const avgTasksPerColumn = totalTasks / columnOrder.length;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">

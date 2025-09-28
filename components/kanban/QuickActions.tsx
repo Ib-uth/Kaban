@@ -20,8 +20,7 @@ import {
   Upload,
   RefreshCw,
   CheckSquare,
-  Square,
-  Filter
+  Square
 } from 'lucide-react';
 
 interface QuickActionsProps {

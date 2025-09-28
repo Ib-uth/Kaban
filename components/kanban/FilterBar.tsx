@@ -17,8 +17,14 @@ interface FilterBarProps {
     priority: string[];
     dateRange: string | null;
     assignee: string[];
+    tags: string[];
   };
-  onFilterChange: (filters: any) => void;
+  onFilterChange: (filters: {
+    priority: string[];
+    dateRange: string | null;
+    assignee: string[];
+    tags: string[];
+  }) => void;
 }
 
 const priorityOptions = [
@@ -48,10 +54,10 @@ export const FilterBar = ({ filters, onFilterChange }: FilterBarProps) => {
   };
 
   const clearAllFilters = () => {
-    onFilterChange({ priority: [], dateRange: null, assignee: [] });
+    onFilterChange({ priority: [], dateRange: null, assignee: [], tags: [] });
   };
 
-  const hasActiveFilters = filters.priority.length > 0 || filters.dateRange || filters.assignee.length > 0;
+  const hasActiveFilters = filters.priority.length > 0 || filters.dateRange || filters.assignee.length > 0 || filters.tags.length > 0;
 
   return (
     <div className="flex items-center gap-2 flex-wrap">
